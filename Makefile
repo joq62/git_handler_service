@@ -6,7 +6,7 @@ all:
 	#INFO: Deleting euinit test applications dirs
 	rm -rf log resource_discovery etcd;
 	rm -rf inventory;
-	rm -rf catalog application_dir deployment_specs catalog_specs;
+	rm -rf catalog application_dir deployment_specs deployment_specs_test catalog_specs;
 	rm -rf doc;
 	rm -rf test_ebin;
 	#INFO: Deleting tilde files and beams
@@ -70,7 +70,7 @@ clean:
 	#INFO: Deleting euinit test applications dirs
 	rm -rf log resource_discovery etcd;
 	rm -rf inventory;
-	rm -rf catalog application_dir deployment_specs catalog_specs;
+	rm -rf catalog application_dir deployment_specs deployment_specs_test catalog_specs;
 	rm -rf test_ebin;
 	#INFO: Deleting tilde files and beams
 	rm -rf *~ */*~ */*/*~;
@@ -93,7 +93,7 @@ eunit:
 	#INFO: Deleting euinit test applications dirs
 	rm -rf log resource_discovery etcd;
 	rm -rf inventory;
-	rm -rf catalog application_dir deployment_specs catalog_specs;
+	rm -rf catalog application_dir deployment_specs deployment_specs_test catalog_specs;
 	rm -rf doc;
 	rm -rf test_ebin;
 	#INFO: Deleting tilde files and beams
