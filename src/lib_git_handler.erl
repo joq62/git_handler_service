@@ -8,6 +8,7 @@
 %%%-------------------------------------------------------------------
 -module(lib_git_handler).
   
+-include("log.api").
 -include("git_handler.hrl").
 -define(UpToDate,"Up to date").
 -define(NotUpToDate,"Not up to date").
