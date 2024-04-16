@@ -2,4 +2,4 @@
 -define(LocalResourceTuples,[{git_handler,{git_handler,node()}}]).
 
 %% I want following resource types
--define(TargetTypes,[]). 
+-define(TargetTypes,[log2]). 
