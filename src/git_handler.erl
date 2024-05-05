@@ -191,7 +191,6 @@ stop()-> gen_server:stop(?SERVER).
 
 init([]) ->
     
-    ?LOG_NOTICE("Server started ",[?MODULE]),
     {ok, #state{
 	   
 	    
@@ -258,8 +257,8 @@ handle_call({read_file,RepoDir,FileName}, _From, State) ->
 
 handle_call({update_repo,RepoDir}, _From, State) ->
     Result=try lib_git_handler:update_repo(RepoDir) of
-	       {ok,R}->
-		    {ok,R};
+	       ok->
+		   ok;
 	       {error,Reason}->
 		   {error,Reason}
 	   catch
@@ -267,8 +266,8 @@ handle_call({update_repo,RepoDir}, _From, State) ->
 		   {Event,Reason,Stacktrace,?MODULE,?LINE}
 	   end,
     Reply=case Result of
-	      {ok,Info}->
-		  {ok,Info};
+	      ok->
+		  ok;
 	      ErrorEvent->
 		  ErrorEvent
 	  end,
@@ -337,6 +336,7 @@ handle_cast({stop}, State) ->
     {stop,normal,ok,State};
 
 handle_cast(UnMatchedSignal, State) ->
+    ?LOG2_WARNING("Unmatched signal",[UnMatchedSignal]),
     io:format("unmatched_signal ~p~n",[{UnMatchedSignal,?MODULE,?LINE}]),
     {noreply, State}.
 
@@ -355,11 +355,12 @@ handle_cast(UnMatchedSignal, State) ->
 handle_info(timeout, State) ->
  %   io:format("timeout ~p~n",[{?MODULE,?LINE}]),
     ok=initial_trade_resources(),
-    
+    ?LOG2_NOTICE("Server started",[?MODULE]),
     {noreply, State};
 
 
 handle_info(Info, State) ->
+    ?LOG2_WARNING("Unmatched signal",[Info]),
     io:format("unmatched_signal ~p~n",[{Info,?MODULE,?LINE}]),
     {noreply, State}.
 

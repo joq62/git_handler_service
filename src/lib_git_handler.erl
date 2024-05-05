@@ -147,8 +147,8 @@ is_repo_updated(RepoDir)->
 %%--------------------------------------------------------------------
 update_repo(RepoDir)->
     true=filelib:is_dir(RepoDir),
-    Result=fetch_merge(RepoDir),  
-    Result.
+    {ok,_}=fetch_merge(RepoDir),  
+    ok.
 %%--------------------------------------------------------------------
 %% @doc
 %% 
